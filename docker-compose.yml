@@ -19,7 +19,7 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - "fi./pigallery2/config:/app/data/config" # CHANGE ME
+      - "./pigallery2/config:/app/data/config" # CHANGE ME
       - "db-data:/app/data/db"
       - "/Photos/images:/app/data/images" # CHANGE ME
       - "/Photos/tmp:/app/data/tmp" # CHANGE ME
