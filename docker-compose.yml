@@ -1,0 +1,47 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/error.log:/etc/nginx/error_log.log
+      - ./nginx/cache/:/etc/nginx/cache
+      - /etc/letsencrypt/:/etc/letsencrypt/
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+
+  pigallery2:
+    image: bpatrik/pigallery2:latest-debian-buster # TODO: change it back to latest once relese workflow gets fixed
+    container_name: pigallery2
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - "fi./pigallery2/config:/app/data/config" # CHANGE ME
+      - "db-data:/app/data/db"
+      - "/Photos/images:/app/data/images" # CHANGE ME
+      - "/Photos/tmp:/app/data/tmp" # CHANGE ME
+    expose:
+      - "80"
+    restart: always
+
+  syncthing:
+      image: syncthing/syncthing
+      container_name: syncthing
+      hostname: my-syncthing
+      environment:
+        - PUID=1000
+        - PGID=1000
+      volumes:
+        - /Photos/images/Imports/Phone:/var/syncthing
+
+      ports:
+        - 8384:8384
+        - 22000:22000/tcp
+        - 22000:22000/udp
+      restart: unless-stopped
+volumes:
+network: host
+  db-data:
