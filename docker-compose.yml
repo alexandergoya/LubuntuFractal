@@ -30,7 +30,7 @@ services:
   syncthing:
       image: syncthing/syncthing
       container_name: syncthing
-      hostname: my-syncthing
+      hostname: syncthing
       environment:
         - PUID=1000
         - PGID=1000
@@ -43,5 +43,5 @@ services:
         - 22000:22000/udp
       restart: unless-stopped
 volumes:
-network: host
+
   db-data:
