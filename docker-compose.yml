@@ -44,9 +44,6 @@ services:
         - 22000:22000/tcp
         - 22000:22000/udp
       restart: unless-stopped
-volumes:
-
-  db-data:
 
   #version: '3.3'
 
@@ -75,3 +72,7 @@ volumes:
     volumes:
       #firefly_iii_upload:/var/www/firefly-iii/storage/upload
       #firefly_iii_db:
+
+      volumes:
+
+  db-data:
