@@ -73,5 +73,5 @@ volumes:
     volumes:
       - firefly_iii_db:/var/lib/mysql
     volumes:
-      firefly_iii_upload:/var/www/firefly-iii/storage/upload
-      firefly_iii_db:
+      #firefly_iii_upload:/var/www/firefly-iii/storage/upload
+      #firefly_iii_db:
